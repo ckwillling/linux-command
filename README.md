@@ -119,7 +119,10 @@ yes
 ### Node调用
 
 ```
-npm install linux-command
+# 安装模块
+npm install 
+# 部署生成html文件
+npm run start
 ```
 
 
