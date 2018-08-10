@@ -9,6 +9,7 @@ var warn = color.yellow;
 var notice = color.blue;
 var success = color.green;
 
+/*
 var deploy_path = path.join(process.cwd(), '.deploy');
 
 if(fs.existsSync(deploy_path)){
@@ -26,3 +27,4 @@ if(fs.existsSync(deploy_path)){
         exec('rm -rf .deploy');
     });   
 }
+*/

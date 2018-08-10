@@ -58,19 +58,19 @@ var path_root = process.cwd();
 
 
 // 删除文件夹
-exec('rm -rf .deploy');
+exec('rm -rf deploy');
 
-// .deploy
+// deploy
 // 当前项目根目录
 // 生成 项目所需的文件
-CreateDatajs('./.deploy/js/dt.js',function(dt_path,arr){
+CreateDatajs('./deploy/js/dt.js',function(dt_path,arr){
 
 
     // 拷贝 favicon.ico 文件 start
     var filetopath = path.join(process.cwd(),'/template/img/favicon.ico');
-    var topath = '.deploy/img/favicon.ico'
+    var topath = 'deploy/img/favicon.ico'
 
-    mkdirsSync(path.join(process.cwd(),'.deploy/img/'));
+    mkdirsSync(path.join(process.cwd(),'deploy/img/'));
     // 创建读取流
     readable = fs.createReadStream( filetopath );
     // 创建写入流
@@ -81,25 +81,25 @@ CreateDatajs('./.deploy/js/dt.js',function(dt_path,arr){
     // 拷贝 favicon.ico 文件 end
 
 
-    CreateJS('/template/js/index.js','/.deploy/js/index.js')
+    CreateJS('/template/js/index.js','/deploy/js/index.js')
 
-    CreateStyl('/template/styl/index.styl','/.deploy/css/index.css')
+    CreateStyl('/template/styl/index.styl','/deploy/css/index.css')
 
     // 首页生成
-    ReadTmpToHTML('/template/index.ejs','/.deploy/index.html',null,{
+    ReadTmpToHTML('/template/index.ejs','/deploy/index.html',null,{
       'p':'/index.html',
       'n':'Linux命令搜索引擎',
       'd':'最专业的Linux命令大全，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
       'command_length':arr.length
     });
-    ReadTmpToHTML('/template/list.ejs','/.deploy/list.html',null,{
+    ReadTmpToHTML('/template/list.ejs','/deploy/list.html',null,{
       p:'/list.html',
       n:'搜索',
       d: '最专业的Linux命令大全，命令搜索引擎，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
       command_length: arr.length
     });
 
-    ReadTmpToHTML('/template/hot.ejs','/.deploy/hot.html',null,{
+    ReadTmpToHTML('/template/hot.ejs','/deploy/hot.html',null,{
         p:'/hot.html',
         n:'搜索',
         d:'最专业的Linux命令大全，命令搜索引擎，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。',
@@ -110,7 +110,7 @@ CreateDatajs('./.deploy/js/dt.js',function(dt_path,arr){
     arr.forEach(function(itm,idx){
         var ejstpm = path.join('/template/',itm.p);
         var md_path = path.join('/command',itm.p);
-        var dep = path.join('/.deploy/c',itm.p);
+        var dep = path.join('/deploy/c',itm.p);
         itm.command_length = arr.length;
         ReadTmpToHTML('/template/details.ejs', dep+'.html' ,md_path+'.md', itm ,arr)
     });
@@ -137,19 +137,19 @@ function copy(src, dst) {
 //   } else {
     
 //     if(/\.styl$/.test(f)){
-//       CreateStyl('/template/styl/index.styl','/.deploy/css/index.css')
+//       CreateStyl('/template/styl/index.styl','/deploy/css/index.css')
 //     }else if(/\.js$/.test(f)){
 
-//       CreateJS('/template/js/index.js','/.deploy/js/index.js')
+//       CreateJS('/template/js/index.js','/deploy/js/index.js')
     
 //     }else if(/\.ejs$/.test(f)){
 //       // 首页生成
-//       ReadTmpToHTML('/template/index.ejs','/.deploy/index.html');
-//       ReadTmpToHTML('/template/list.ejs','/.deploy/list.html');
+//       ReadTmpToHTML('/template/index.ejs','/deploy/index.html');
+//       ReadTmpToHTML('/template/list.ejs','/deploy/list.html');
     
 //     }else if(/\.md$/.test(f)){
 //       var mdp = f.replace(path_root,'');
-//       var dep = path.join('/.deploy/',mdp);
+//       var dep = path.join('/deploy/',mdp);
 //       ReadTmpToHTML('/template/details.ejs',dep.replace('.md','.html'),mdp);
 //     }
 //   }
@@ -183,7 +183,7 @@ function ReadTmpToHTML(from_path,to_path,md_path,des_json, total_pages){
     tmp_str = tmp_str.toString();
 
     var relative_path = '';
-    var current_path = to_path.replace(/^\/\.deploy/,'');
+    var current_path = to_path.replace(/^\/deploy/,'');
     if(md_path){
       //CSS/JS 引用相对地址
       relative_path = path.relative(md_path.toString(),'/');

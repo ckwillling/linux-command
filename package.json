@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node build/compile.js && npm run deploy",
     "deploy": "node build/deploy.js",
-    "build:css": "stylus -u autoprefixer-stylus template/styl/index.styl -o .deploy/ -c",
-    "watch:css": "stylus -u autoprefixer-stylus -w template/styl/index.styl -o .deploy/ -c"
+    "build:css": "stylus -u autoprefixer-stylus template/styl/index.styl -o deploy/ -c",
+    "watch:css": "stylus -u autoprefixer-stylus -w template/styl/index.styl -o deploy/ -c"
   },
   "keywords": [
     "Linux",
@@ -39,7 +39,9 @@
     "uglify-js": "^2.7.4",
     "watch": "^1.0.1"
   },
-  "dependencies": {},
+  "dependencies": {
+    "linux-command": "^1.1.0"
+  },
   "bugs": {
     "url": "https://github.com/jaywcjlove/linux-command/issues"
   },
