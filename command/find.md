@@ -329,6 +329,11 @@ find . -type f -name "*.txt" -exec printf "File: %s\n" {} \;
 find . -path "./sk" -prune -o -name "*.txt" -print
 ```
 
+#### 搜索但跳出指定的多个目录
+```
+find . ! -path './javacode/*' ! -path './pythoncode/*' ! -path './commoncode/*'  ! -path './code*' ! -path '*code' ! -path './src/node_modules/*' -type f -name '*code*'
+```
+
 #### find其他技巧收集
 
 要列出所有长度为零的文件
