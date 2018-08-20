@@ -104,4 +104,9 @@ root@localhost [test]# du
 du -sh $dir
 ```
 
+易读显示大小并排序
+```
+du -sh * | sort -h
+```
+
 <!-- Linux命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->
